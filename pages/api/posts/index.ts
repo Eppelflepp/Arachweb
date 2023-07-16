@@ -41,7 +41,7 @@ export default async function handler(
                         comments: true
                     },
                     orderBy: {
-                        createdAt: 'asc'
+                        createdAt: 'desc'
                     }
                 });
             } else {
@@ -51,7 +51,7 @@ export default async function handler(
                         comments: true,
                     },
                     orderBy: {
-                        createdAt: 'asc'
+                        createdAt: 'desc'
                     }
                 });
             }
