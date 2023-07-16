@@ -41,7 +41,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         });
 
         if (post?.userId) {
-          if (post?.userId !== currentUser?.id) {
+          { /* if (post?.userId !== currentUser?.id) { */ }
             await prisma.notification.create({
             data: {
               body: `@${currentUser.username} liked your post!`,
@@ -57,7 +57,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
               hasNotification: true
             }
           })
-          }
         }
       } catch (error) {
         console.log(error);

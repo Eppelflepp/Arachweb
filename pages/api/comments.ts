@@ -36,7 +36,7 @@ export default async function handler(
             });
     
             if (post?.userId) {
-              if (post?.userId !== currentUser?.id) {
+              {/* if (post?.userId !== currentUser?.id) { */} 
                 await prisma.notification.create({
                   data: {
                     body: `@${currentUser?.username} left a comment on your post!`,
@@ -53,7 +53,6 @@ export default async function handler(
                   }
                 })
               }
-            }
           } catch (error) {
             console.log(error);
           }
