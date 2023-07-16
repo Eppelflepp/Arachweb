@@ -1,6 +1,6 @@
 import { signOut } from 'next-auth/react';
 import { BiLogOut } from 'react-icons/bi';
-import { BsBellFill } from 'react-icons/bs';
+import { BsBellFill, BsDiscord } from 'react-icons/bs';
 import { GiSpiderWeb, GiSpiderMask } from 'react-icons/gi'
 
 import useCurrentUser from '@/hooks/useCurrentUser';
