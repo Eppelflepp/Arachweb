@@ -36,21 +36,23 @@ export default async function handler(
             });
     
             if (post?.userId) {
-              await prisma.notification.create({
-                data: {
-                  body: `@${currentUser?.username} left a comment on your post!`,
-                  userId: post.userId
-                }
-              });
-    
-              await prisma.user.update({
-                where: {
-                  id: post.userId
-                },
-                data: {
-                  hasNotification: true
-                }
-              })
+              if (post?.userId !== currentUser?.id) {
+                await prisma.notification.create({
+                  data: {
+                    body: `@${currentUser?.username} left a comment on your post!`,
+                    userId: post.userId
+                  }
+                });
+      
+                await prisma.user.update({
+                  where: {
+                    id: post.userId
+                  },
+                  data: {
+                    hasNotification: true
+                  }
+                })
+              }
             }
           } catch (error) {
             console.log(error);
