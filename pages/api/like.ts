@@ -2,7 +2,6 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 import prisma from '@/libs/prismadb';
 import serverAuth from "@/libs/serverAuth";
-import { userAgent } from "next/server";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST' && req.method !== 'DELETE') {
@@ -32,23 +31,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     if (req.method === 'POST') {
       updatedLikedIds.push(currentUser.id);
-
+      
+      // NOTIFICATION PART START
       try {
         const post = await prisma.post.findUnique({
           where: {
-            id: postId
+            id: postId,
           }
         });
-
+    
         if (post?.userId) {
-          { /* if (post?.userId !== currentUser?.id) { */ }
-            await prisma.notification.create({
+          await prisma.notification.create({
             data: {
-              body: `@${currentUser.username} liked your post!`,
+              body: 'Someone liked your tweet!',
               userId: post.userId
             }
           });
-
+    
           await prisma.user.update({
             where: {
               id: post.userId
@@ -56,11 +55,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             data: {
               hasNotification: true
             }
-          })
+          });
         }
-      } catch (error) {
+      } catch(error) {
         console.log(error);
       }
+      // NOTIFICATION PART END
     }
 
     if (req.method === 'DELETE') {
