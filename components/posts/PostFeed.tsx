@@ -86,7 +86,7 @@ const PostFeed: React.FC<PostFeedProps> = ({ userId }) => {
       {isLoading && <div>Loading more posts...</div>}
       {!isLoading && data && data.length > 0 && (
         <div className="flex flex-col items-center my-4">
-        <Button label="Load more" onClick={loadMorePosts} disabled={isLoading} secondary fullWidth/>
+        <Button label="Show more" onClick={loadMorePosts} disabled={isLoading} secondary fullWidth/>
       </div>
       )}
     </div>
