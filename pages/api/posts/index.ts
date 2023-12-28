@@ -4,9 +4,9 @@ import serverAuth from "@/libs/serverAuth";
 import prisma from "@/libs/prismadb";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  //if (req.method !== 'POST' && req.method !== 'GET') {
-    //return res.status(405).end();
-  //}
+  if (req.method !== 'POST' && req.method !== 'GET') {
+    return res.status(405).end();
+  }
 
   try {
     
@@ -25,9 +25,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     if (req.method === 'GET') {
-      const { userId, page = 1 } = req.query;
+      const { userId, page = '1' } = req.query;
       const postsPerPage = 5;
-      const skip = (parseInt(page) - 1) * postsPerPage;
+      const skip = (parseInt(page as string) - 1) * postsPerPage;
 
       let posts;
 
