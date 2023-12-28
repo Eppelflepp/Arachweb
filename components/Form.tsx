@@ -39,9 +39,9 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
       await axios.post(url, { body });
 
       if (isComment) {
-        toast.success('Your post hit the web!');
-      } else {
         toast.success('Your comment hit the post!');
+      } else {
+        toast.success('Your post hit the web!');
       }
       setBody('');
       mutatePosts();
