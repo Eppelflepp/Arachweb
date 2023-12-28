@@ -1,9 +1,13 @@
-import React from 'react';
+// Layout.tsx
 
+import React from 'react';
 import FollowBar from "@/components/layout/FollowBar"
 import Sidebar from "@/components/layout/Sidebar"
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  // Assuming you have the userId available in your layout
+  const userId = "exampleUserId"; // Replace with the actual userId
+
   return (
     <div className="h-screen bg-black">
       <div className="container h-full mx-auto xl:px-30 max-w-6xl">
@@ -18,7 +22,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           ">
             {children}
           </div>
-          <FollowBar />
+          <FollowBar userId={userId} /> {/* Pass the userId to FollowBar */}
         </div>
      </div>
     </div>
