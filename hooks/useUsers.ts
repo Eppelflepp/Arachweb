@@ -1,20 +1,12 @@
-// useUsers.ts
-
 import useSWR from 'swr';
-
 import fetcher from '@/libs/fetcher';
 
 const useUsers = () => {
-  const { data, error, isLoading, mutate } = useSWR('/api/users', fetcher, {
-    // Add the dependency array to fetch the data only once
-    revalidateOnMount: true,
-  });
+  const { data, error } = useSWR('/api/users', fetcher);
 
   return {
-    data,
+    data: data?.users,
     error,
-    isLoading,
-    mutate,
   };
 };
 

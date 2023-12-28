@@ -1,21 +1,17 @@
 // usePosts.ts
 
-import useSWR from "swr";
-import fetcher from "@/libs/fetcher";
+import useSWR from 'swr';
+import fetcher from '@/libs/fetcher';
 
-const usePosts = (currentPage: number, userId?: string) => {
-  const baseUrl = "/api/posts";
-
-  const query = userId ? `?userId=${userId}&page=${currentPage}` : `?page=${currentPage}`;
-  const url = `${baseUrl}${query}`;
-
+const usePosts = (page?: number, userId?: string | null) => {
+  const url = userId ? `/api/posts?userId=${userId}&page=${page || 1}` : `/api/posts?page=${page || 1}`;
   const { data, error, isLoading, mutate } = useSWR(url, fetcher);
 
   return {
     data,
     error,
     isLoading,
-    mutate,
+    mutate
   };
 };
 
