@@ -1,14 +1,8 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "next.config.js",
-        "use": "@now/next"
+    "functions": {
+      "api/*": {
+        "methods": ["GET", "POST"]
       }
-    ],
-    "routes": [
-      { "src": "/api/(.*)", "dest": "/api/$1", "methods": ["GET", "POST"] },
-      { "src": "/(.*)", "dest": "/$1" }
-    ]
+    }
   }
   
