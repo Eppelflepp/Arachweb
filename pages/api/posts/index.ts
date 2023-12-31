@@ -41,7 +41,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             comments: true
           },
           orderBy: {
-            createdAt: 'desc'
+            createdAt: 'asc'
           },
           skip,
           take: postsPerPage,
