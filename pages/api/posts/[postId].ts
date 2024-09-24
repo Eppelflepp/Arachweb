@@ -25,7 +25,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             user: true
           },
           orderBy: {
-            createdAt: 'desc'
+            createdAt: 'asc'
           }
         },
       },

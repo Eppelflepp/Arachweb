@@ -22,7 +22,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           ">
             {children}
           </div>
-          <FollowBar userId={userId} /> {/* Pass the userId to FollowBar */}
+          <FollowBar />
         </div>
      </div>
     </div>
