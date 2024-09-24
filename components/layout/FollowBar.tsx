@@ -4,7 +4,7 @@ import Avatar from "../Avatar";
 import useCurrentUser from "@/hooks/useCurrentUser"; // Import the current user hook
 
 // Custom hook to fetch users with an optional limit
-const useUsers = (limit) => {
+const useUsers = (limit: number) => {
   const { data, error } = useSWR(`/api/users?limit=${limit}`, fetcher);
   return { data: data || [], error };
 };
@@ -15,16 +15,16 @@ const FollowBar = () => {
   const followingIds = currentUser?.followingIds || [];
 
   // Filter initial users to exclude followed ones
-  const filteredInitialUsers = initialUsers.filter(user => !followingIds.includes(user.id));
+  const filteredInitialUsers = initialUsers.filter((user: { id: any; }) => !followingIds.includes(user.id));
 
   // Calculate how many additional users are needed
   const usersNeeded = Math.max(0, 10 - filteredInitialUsers.length);
   const { data: additionalUsers = [], error: additionalError } = useUsers(usersNeeded); // Fetch additional users
 
   // Filter additional users to exclude followed ones and already included users
-  const filteredAdditionalUsers = additionalUsers.filter(user => 
+  const filteredAdditionalUsers = additionalUsers.filter((user: { id: any; }) => 
     !followingIds.includes(user.id) && 
-    !filteredInitialUsers.some(initialUser => initialUser.id === user.id) // Exclude already included users
+    !filteredInitialUsers.some((initialUser: { id: any; }) => initialUser.id === user.id) // Exclude already included users
   );
 
   // Combine filtered initial users with filtered additional users, ensuring none are duplicates
