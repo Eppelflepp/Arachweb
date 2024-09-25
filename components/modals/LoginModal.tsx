@@ -4,6 +4,7 @@ import Input from "../Input";
 import Modal from "../Modal";
 import useRegisterModal from "@/hooks/useRegisterModal";
 import { signIn } from "next-auth/react";
+import toast from "react-hot-toast";
 
 const LoginModal = () => {
     const loginModal = useLoginModal();
@@ -25,20 +26,26 @@ const LoginModal = () => {
     const onSubmit = useCallback(async () => {
         try {
             setIsLoading(true);
-
-            await signIn('credentials', {
+    
+            const result = await signIn('credentials', {
                 email,
-                password
-            })
-
-            loginModal.onClose();
+                password,
+                redirect: false // Important to prevent automatic redirect and handle errors manually
+            });
+    
+            if (result?.error === "Invalid credentials") {
+                toast.error("The credentials you entered are invalid.\nPlease check and try again.");
+            } else {
+                loginModal.onClose();
+            }
         } catch (error) {
             console.log(error);
+            toast.error("Something went wrong. Please try again.");
         } finally {
             setIsLoading(false);
         }
     }, [loginModal, email, password]);
-
+    
     const bodyContent = (
         <div className="flex flex-col gap-4">
             <Input

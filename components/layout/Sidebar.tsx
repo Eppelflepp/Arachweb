@@ -14,11 +14,6 @@ const Sidebar = () => {
 
   const items = [
     {
-      icon: GiSpiderWeb,
-      label: 'Web',
-      href: '/',
-    },
-    {
       icon: BsBellFill,
       label: 'Notifications',
       href: '/notifications',
@@ -30,6 +25,11 @@ const Sidebar = () => {
       label: 'Profile',
       href: `/users/${currentUser?.id}`,
       auth: true,
+    },
+    {
+      icon: BsDiscord,
+      label: 'Support Discord',
+      href: 'https://discord.gg/qbtSg33F6W',
     },
   ]
 

@@ -60,13 +60,13 @@ const RegisterModal = () => {
         <div className="flex flex-col gap-4">
             <Input
                 placeholder="Email"
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value.replace(/\s+/g, '').toLowerCase())} // Remove spaces and convert to lowercase
                 value={email}
                 disabled={isLoading}
             />
             <Input
                 placeholder="Name"
-                onChange={(e) => setName(e.target.value)}
+                onChange={(e) => setName(e.target.value.replace(/\s+/g, '').toLowerCase())}
                 value={name}
                 disabled={isLoading}
             />

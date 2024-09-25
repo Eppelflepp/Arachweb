@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { GiCobweb } from 'react-icons/gi'
+import { GiSpiderWeb } from 'react-icons/gi'
 
 const SidebarLogo = () => {
     const router = useRouter();
@@ -18,7 +18,7 @@ const SidebarLogo = () => {
             cursor-pointer
             transition
             ">
-            <GiCobweb size={28} color="white"/>
+            <GiSpiderWeb size={28} color="white"/>
         </div>
     );
 }

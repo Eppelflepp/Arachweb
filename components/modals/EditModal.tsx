@@ -70,7 +70,7 @@ const EditModal = () => {
       />
       <Input 
         placeholder="Username"
-        onChange={(e) => setUsername(e.target.value)}
+        onChange={(e) => setUsername(e.target.value.replace(/\s+/g, '').toLowerCase())}
         value={username}
         disabled={isLoading} 
       />
